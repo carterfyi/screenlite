@@ -88,6 +88,7 @@ services:
       - CHOWN
       - SETUID
       - SETGID
+    read_only: true
     tmpfs:
       - /tmp:noexec,nosuid,size=100m
     restart: unless-stopped
@@ -210,3 +211,7 @@ volumes:
 networks:
   ffmpeg-network:
     driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
