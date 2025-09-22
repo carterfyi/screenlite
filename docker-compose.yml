@@ -76,18 +76,11 @@ services:
       - PORT=${FFMPEG_SERVICE_PORT:-3002}
       - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-http://localhost:3000,http://server:3000}
     volumes:
+      - ./ffmpeg-service:/app
+      - /app/node_modules
       - ffmpeg_logs:/var/log/ffmpeg
     networks:
       - ffmpeg-network
-    security_opt:
-      - no-new-privileges:true
-      - seccomp:unconfined
-    cap_drop:
-      - ALL
-    cap_add:
-      - CHOWN
-      - SETUID
-      - SETGID
     tmpfs:
       - /tmp:noexec,nosuid,size=100m
     restart: unless-stopped
