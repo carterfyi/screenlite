@@ -3,7 +3,7 @@ import { requestEmailChangeRoute } from './request-email-change.route.ts'
 import { confirmEmailRoute } from './confirm-email.route.ts'
 import { cancelEmailChangeRoute } from './cancel-email-change.route.ts'
 import { confirmEmailChangeRoute } from './confirm-email-change.route.ts'
-import { sendVerificationEmailRoute } from './send-verification-email.route.ts'
+import { requestVerificationEmailRoute } from './request-verification-email.route.ts'
 
 // Prefix: /api/email-verification
 const emailVerificationRoutes = async (fastify: FastifyInstance) => {
@@ -12,7 +12,7 @@ const emailVerificationRoutes = async (fastify: FastifyInstance) => {
         confirmEmailChangeRoute(fastify),
         confirmEmailRoute(fastify),
         cancelEmailChangeRoute(fastify),
-        sendVerificationEmailRoute(fastify),
+        requestVerificationEmailRoute(fastify),
     ])
 }
 
