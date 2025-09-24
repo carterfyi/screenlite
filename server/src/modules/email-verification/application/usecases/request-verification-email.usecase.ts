@@ -8,7 +8,7 @@ import { ValidationError } from '@/shared/errors/validation.error.ts'
 import { IConfig } from '@/infrastructure/config/config.interface.ts'
 import { EmailVerificationTokenType } from '@/core/enums/email-verification-token-type.enum.ts'
 
-export type SendVerificationEmailUseCaseDeps = {
+export type RequestVerificationEmailUseCaseDeps = {
     userRepo: IUserRepository
     tokenRepo: IEmailVerificationTokenRepository
     tokenFactory: IEmailVerificationTokenFactory
@@ -16,9 +16,9 @@ export type SendVerificationEmailUseCaseDeps = {
     config: IConfig
 }
 
-export class SendVerificationEmailUseCase {
+export class RequestVerificationEmailUseCase {
     constructor(
-        private readonly deps: SendVerificationEmailUseCaseDeps
+        private readonly deps: RequestVerificationEmailUseCaseDeps
     ) {}
 
     async execute(userId: string) {

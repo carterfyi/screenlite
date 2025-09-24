@@ -1,20 +1,20 @@
 import { FastifyInstance } from 'fastify'
 import { ZodTypeProvider } from 'fastify-type-provider-zod'
-import { SendVerificationEmailUseCase } from '../../application/usecases/send-verification-email.usecase.ts'
+import { RequestVerificationEmailUseCase } from '../../application/usecases/request-verification-email.usecase.ts'
 import { EmailVerificationTokenFactory } from '../../domain/services/email-verification-token.factory.ts'
-import { SendVerificationEmailSchema } from '../schemas/send-verification-email.schema.ts'
+import { RequestVerificationEmailSchema } from '../schemas/request-verification-email.schema.ts'
 
-export async function sendVerificationEmailRoute(fastify: FastifyInstance) {
-    fastify.withTypeProvider<ZodTypeProvider>().post('/send-verification-email', {
+export async function requestVerificationEmailRoute(fastify: FastifyInstance) {
+    fastify.withTypeProvider<ZodTypeProvider>().post('/request-verification-email', {
         schema: {
-            body: SendVerificationEmailSchema
+            body: RequestVerificationEmailSchema
         },
     }, async (request, reply) => {
         const { userId } = request.body
 
         const tokenFactory = new EmailVerificationTokenFactory(fastify.tokenGenerator, fastify.secureHasher)
 
-        const sendVerificationEmail = new SendVerificationEmailUseCase({
+        const requestVerificationEmail = new RequestVerificationEmailUseCase({
             userRepo: fastify.userRepository,
             tokenRepo: fastify.emailVerificationTokenRepository,
             tokenFactory,
@@ -22,7 +22,7 @@ export async function sendVerificationEmailRoute(fastify: FastifyInstance) {
             config: fastify.config,
         })
 
-        await sendVerificationEmail.execute(userId)
+        await requestVerificationEmail.execute(userId)
 
         reply.status(200).send({ message: 'VERIFICATION_EMAIL_SENT' })
     })
