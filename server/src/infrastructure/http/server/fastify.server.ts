@@ -58,7 +58,7 @@ export class FastifyServer {
         await this.app.register(plugins.mail)
         await this.app.register(plugins.errorHandler)
         await this.app.register(plugins.websocket)
-        await this.app.register(plugins.jobQueue)
+        await this.app.register(plugins.eventBus)
         await this.app.register(plugins.di)
         await this.app.register(plugins.auth)
         await this.app.register(plugins.adminPermissions)
