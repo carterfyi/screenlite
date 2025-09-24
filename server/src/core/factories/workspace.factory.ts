@@ -1,13 +1,13 @@
 import { Workspace } from '@/core/entities/workspace.entity.ts'
 import { WorkspaceStatus } from '@/core/enums/workspace-status.enum.ts'
-import { v4 as uuid } from 'uuid'
+import { randomUUID } from 'crypto'
 
 export class WorkspaceFactory {
     static create(props: {
         name: string
         slug: string
     }): Workspace {
-        const id = uuid()
+        const id = randomUUID()
         const now = new Date()
     
         return new Workspace({

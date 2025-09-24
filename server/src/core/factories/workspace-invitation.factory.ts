@@ -1,6 +1,6 @@
-import { v4 as uuid } from 'uuid'
 import { WorkspaceInvitationStatus } from '../enums/workspace-invitation-status.enum.ts'
 import { WorkspaceInvitation } from '../entities/workspace-invitation.entity.ts'
+import { randomUUID } from 'crypto'
 
 export class WorkspaceInvitationFactory {
     static create(props: {
@@ -9,7 +9,7 @@ export class WorkspaceInvitationFactory {
         status: WorkspaceInvitationStatus
         initiatorId: string
     }): WorkspaceInvitation {
-        const id = uuid()
+        const id = randomUUID()
         const now = new Date()
     
         return new WorkspaceInvitation({
