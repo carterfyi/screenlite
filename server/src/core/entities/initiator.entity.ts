@@ -1,6 +1,6 @@
 import { InitiatorDTO } from '@/shared/dto/initiator.dto.ts'
-import { v4 as uuid } from 'uuid'
 import { InitiatorType } from '../enums/initiator-type.enum.ts'
+import { randomUUID } from 'crypto'
 
 export class Initiator {
     public readonly id: string
@@ -15,7 +15,7 @@ export class Initiator {
 
     static createUserInitiator(userId: string): Initiator {
         return new Initiator({
-            id: uuid(),
+            id: randomUUID(),
             type: InitiatorType.User,
             userId,
         })

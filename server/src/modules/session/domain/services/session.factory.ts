@@ -1,5 +1,5 @@
 import { Session } from '@/core/entities/session.entity.ts'
-import { v4 as uuid } from 'uuid'
+import { randomUUID } from 'crypto'
 
 export class SessionFactory {
     create(params: {
@@ -10,7 +10,7 @@ export class SessionFactory {
         tokenHash: string
     }): Session {
         return new Session({
-            id: uuid(),
+            id: randomUUID(),
             userId: params.userId,
             tokenHash: params.tokenHash,
             userAgent: params.userAgent,
