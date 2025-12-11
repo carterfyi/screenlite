@@ -15,7 +15,7 @@ services:
       - screenlite_server_logs:/app/logs
     environment:
       - NODE_ENV=${NODE_ENV:-development}
-      - ENCRYPTION_SECRET=${ENCRYPTION_SECRET:-secret}
+      - ENCRYPTION_SECRET=${ENCRYPTION_SECRET:-SECRETTUNNELSECRETTUNNELTHROUGHTHEMOUNTAINSECRETSECRETSECRETSECRETTUNNEL}
       - DATABASE_URL=${DATABASE_URL:-postgresql://postgres:postgres@postgres:5432/screenlite}
       - REDIS_HOST=${REDIS_HOST:-redis}
       - REDIS_PORT=${REDIS_PORT:-6379}
@@ -128,7 +128,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-  
+
   # PostgreSQL Database
   postgres:
     image: postgres:15-alpine

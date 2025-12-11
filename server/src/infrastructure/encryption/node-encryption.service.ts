@@ -7,9 +7,8 @@ export class NodeEncryptionService implements IEncryptionService {
     private readonly ivLength: number = 12
     private readonly authTagLength: number = 16
 
-    constructor(secretBase64: string) {
-        this.validateSecret(secretBase64)
-        this.key = Buffer.from(secretBase64, 'base64')
+    constructor(envSecret: string) {
+        this.key = Buffer.from(crypto.hash('sha256', envSecret), 'hex')
     }
 
     public async encrypt(plainText: string): Promise<string> {
@@ -56,13 +55,5 @@ export class NodeEncryptionService implements IEncryptionService {
         ])
 
         return decrypted.toString('utf8')
-    }
-
-    private validateSecret(secret: string): void {
-        const keyBuffer = Buffer.from(secret, 'base64')
-
-        if (keyBuffer.length !== 32) {
-            throw new Error('ENCRYPTION_SECRET must be 32 bytes (base64-encoded)')
-        }
     }
 }
