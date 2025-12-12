@@ -1,0 +1,30 @@
+{
+  "recommendations": [
+    // Essential
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "prisma.prisma",
+
+    // TypeScript & JavaScript
+    "oven.bun-vscode",
+    "yoavbls.pretty-ts-errors",
+
+    // React & Frontend
+    "bradlc.vscode-tailwindcss",
+    "dsznajder.es7-react-js-snippets",
+
+    // Testing
+    "vitest.explorer",
+
+    // Docker
+    "ms-azuretools.vscode-docker",
+
+    // Utilities
+    "christian-kohler.path-intellisense",
+    "usernamehw.errorlens",
+    "eamodio.gitlens",
+    "github.copilot",
+    "github.copilot-chat"
+  ],
+  "unwantedRecommendations": []
+}

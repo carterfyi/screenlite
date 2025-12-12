@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "Server",
+			"path": "."
+		},
+		{
+			"name": "Player",
+			"path": "../screenlite-web-player"
+		}
+	],
+	"settings": {}
+}

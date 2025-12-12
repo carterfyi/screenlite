@@ -1,0 +1,130 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Server (tsx watch)",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "${workspaceFolder}/.vscode/node-launcher.ps1",
+      "runtimeArgs": [
+        "--import",
+        "tsx/esm"
+      ],
+      "args": [
+        "--watch",
+        "${workspaceFolder}/server/src/entrypoints/http.ts"
+      ],
+      "cwd": "${workspaceFolder}/server",
+      "envFile": "${workspaceFolder}/server/.env",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "sourceMaps": true,
+      "restart": true,
+      "attachSimplePort": 9229
+    },
+    {
+      "name": "Debug Server (no watch)",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "${workspaceFolder}/.vscode/node-launcher.ps1",
+      "runtimeArgs": [
+        "--import",
+        "tsx/esm"
+      ],
+      "args": [
+        "${workspaceFolder}/server/src/entrypoints/http.ts"
+      ],
+      "cwd": "${workspaceFolder}/server",
+      "envFile": "${workspaceFolder}/server/.env",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "sourceMaps": true
+    },
+    {
+      "name": "Debug FFmpeg Service",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/ffmpeg-service/src/index.js",
+      "cwd": "${workspaceFolder}/ffmpeg-service",
+      "envFile": "${workspaceFolder}/ffmpeg-service/.env",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Debug Server Tests",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "test",
+        "--",
+        "--no-coverage"
+      ],
+      "cwd": "${workspaceFolder}/server",
+      "envFile": "${workspaceFolder}/server/.env",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "sourceMaps": true
+    },
+    {
+      "name": "Debug Current Test File",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "test",
+        "--",
+        "--no-coverage",
+        "${relativeFile}"
+      ],
+      "cwd": "${workspaceFolder}/server",
+      "envFile": "${workspaceFolder}/server/.env",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "sourceMaps": true
+    },
+    {
+      "name": "Attach to Docker Server",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "address": "localhost",
+      "localRoot": "${workspaceFolder}/server",
+      "remoteRoot": "/app",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "sourceMaps": true,
+      "restart": true
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Debug Server + FFmpeg Service",
+      "configurations": [
+        "Debug Server (tsx watch)",
+        "Debug FFmpeg Service"
+      ],
+      "presentation": {
+        "hidden": false,
+        "group": "full-stack",
+        "order": 1
+      }
+    }
+  ]
+}
